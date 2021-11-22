@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/HotelPage.css";
+import { Link } from "react-router-dom";
 
 export default class HotelPage extends React.Component {
   render() {
@@ -8,7 +9,7 @@ export default class HotelPage extends React.Component {
       <div className="hotelPage">
         <h1>{this.props.hotelData.name}</h1>
         <img
-          className="hotelImage"
+          className="hotelImage onPage"
           src={this.props.hotelData.img}
           alt="Hotel Image"
         />
@@ -17,7 +18,10 @@ export default class HotelPage extends React.Component {
             " " +
             this.props.hotelData["street name"]}
         </h2>
-        <CallNowButton phone={this.props.hotelData.phone} />
+        <Link className="linked" to={"/"}>
+          <button className="button-56">חזרה לדף הבית</button>
+        </Link>
+        <CallNowButton phone={"+972" + this.props.hotelData.phone} />
       </div>
     );
   }
@@ -25,6 +29,8 @@ export default class HotelPage extends React.Component {
 
 class CallNowButton extends React.Component {
   render() {
-    return <button>{"CALL NOW  " + this.props.phone}</button>;
+    return (
+      <button className="button-56">{"CALL NOW  " + this.props.phone}</button>
+    );
   }
 }

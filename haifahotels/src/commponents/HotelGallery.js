@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { kebabCase } from "../helpers/kebabCase";
 import HotelCard from "./HotelCard";
 import HotelPage from "./HotelPage";
 import { hotelData } from "../assets/hotelData";
 import "../style/HotelGallery.css";
 
-export default class HotelsGallery extends React.Component {
+export default class HotelGallery extends React.Component {
   render() {
     let right = [];
     let left = [];
@@ -17,15 +19,22 @@ export default class HotelsGallery extends React.Component {
         <div className="hotelGalleryTable">
           <div className="leftCol">
             {left.map((hotel) => {
-              return <HotelCard hotelData={hotel} />;
+              return (
+                <Link className="linked" to={"/" + kebabCase(hotel.name)}>
+                  <HotelCard hotelData={hotel} />
+                </Link>
+              );
             })}
           </div>
           <div className="rightCol">
             {right.map((hotel) => {
-              return <HotelCard hotelData={hotel} />;
+              return (
+                <Link className="linked" to={"/" + kebabCase(hotel.name)}>
+                  <HotelCard hotelData={hotel} />
+                </Link>
+              );
             })}
           </div>
-          <HotelPage hotelData={hotelData[0]} />
         </div>
       </div>
     );
